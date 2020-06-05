@@ -1,17 +1,21 @@
-class EmailParser
+class EmailParser 
+  attr_accessor :name, :csv_emails
+  
+  def initialize(csv_emails)
+#   # you don't need name in here, it is redundant/
+#   @name = name
+    @csv_emails = csv_emails
+  end 
 
-  attr_reader :addresses_raw
+# This will not work because "emails2" below will not be properly parsed  
+# def parse 
+#   csv_emails.split(/\s*,\s*/)
+# end 
 
-  def initialize(addresses_string)
-    @addresses_raw = addresses_string
-  end
-
-  def parse
-    #need to review the bottom 2 methods bec I don't understand them -
-    #Blog post on regex????
-    addresses_raw.split(",").join.split.uniq
-    #addresses_raw.split(/[\s,]+/).uniq
-    #addresses_raw.split(/ |, |,/).uniq
-  end
-
-end
+  def parse 
+    csv_emails.split.collect do |address|
+      address.split(',') 
+    end
+    .flatten.uniq 
+  end 
+end 
