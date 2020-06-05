@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 class EmailParser
 attr_accessor :emails 
 
